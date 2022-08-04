@@ -84,7 +84,8 @@ DATABASES = {
         'NAME': os.getenv('DB_DATABASE'),
         'USER': os.getenv('DB_USERNAME'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),   # Or an IP Address that your DB is hosted on
+        # Or an IP Address that your DB is hosted on
+        'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
     }
 }
@@ -162,3 +163,5 @@ LOGGING = {
 }
 
 STATIC_ROOT = os.getenv('STATIC_ROOT')
+CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'unsafe-none'
