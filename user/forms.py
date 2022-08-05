@@ -13,5 +13,6 @@ class AuthorRegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'bio']
         
-
+class AuthorLoginForm(AuthenticationForm):
+    username = forms.CharField(label='Email / Username')
     
