@@ -1,23 +1,20 @@
 from datetime import datetime
 from typing import Dict
+from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import View
 
 from .models import Author
 from .forms import AuthorRegistrationForm
+import logging
+logger = logging.getLogger(__name__)
 
 
 def register(request):
     now = datetime.now()
     html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html, status=200)
-
-
-def login(request):
-    now = datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html, status=201)
 
 
 class UserRegisterView(View):
@@ -37,7 +34,7 @@ class UserRegisterView(View):
             bio = form.cleaned_data.get('bio')
             author = Author(bio=bio, user=user)
             author.save()
-            
+
             return redirect('post_list')
 
         return render(request, self.template_name, {'form': form})
