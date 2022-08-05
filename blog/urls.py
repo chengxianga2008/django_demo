@@ -18,5 +18,5 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path('/', views.PasswordResetView.as_view(), name='password_reset'),
+    path('', views.PostListView.as_view(), name='post_list'),
 ]
