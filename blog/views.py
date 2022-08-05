@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from . import models
+from .models import Post
 
 # Create your views here.
 class PostListView(ListView):
-    model = models.Post
+    model = Post
     template_name = 'blog/list.html'

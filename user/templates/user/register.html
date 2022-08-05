@@ -10,13 +10,22 @@
 <p>Please login to see this page.</p>
 {% endif %}
 {% endif %}
-
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form|crispy }}
-</form>
-
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<div class="content-section">
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Join Today</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+        </small>
+    </div>
+</div>
 
 {% endblock %}

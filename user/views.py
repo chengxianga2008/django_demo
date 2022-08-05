@@ -1,8 +1,11 @@
 from datetime import datetime
-from django.contrib.auth.forms import UserCreationForm
+from typing import Dict
 from django.shortcuts import redirect, render
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.views import View
+
+from .models import Author
+from .forms import AuthorRegistrationForm
 
 
 def register(request):
@@ -18,8 +21,8 @@ def login(request):
 
 
 class UserRegisterView(View):
-    form_class = UserCreationForm
-    initial = {}
+    form_class = AuthorRegistrationForm
+    initial: Dict = {}
     template_name = 'user/register.html'
 
     def get(self, request, *args, **kwargs):
@@ -30,6 +33,11 @@ class UserRegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             # <process form cleaned data>
+            user = form.save()
+            bio = form.cleaned_data.get('bio')
+            author = Author(bio=bio, user=user)
+            author.save()
+            
             return redirect('post_list')
 
         return render(request, self.template_name, {'form': form})
