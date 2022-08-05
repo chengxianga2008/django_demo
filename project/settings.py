@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'user',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +167,5 @@ LOGGING = {
 STATIC_ROOT = os.getenv('STATIC_ROOT')
 CSRF_TRUSTED_ORIGINS = [os.getenv('CSRF_TRUSTED_ORIGINS')]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'unsafe-none'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

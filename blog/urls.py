@@ -16,10 +16,7 @@ Including another URLconf
 
 from django.urls import include, path
 from . import views
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('register/', views.UserRegisterView.as_view(), name='register'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('/', views.PasswordResetView.as_view(), name='password_reset'),
 ]
