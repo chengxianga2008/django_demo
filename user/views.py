@@ -10,7 +10,6 @@ from .forms import AuthorRegistrationForm
 import logging
 logger = logging.getLogger(__name__)
 
-
 def register(request):
     now = datetime.now()
     html = "<html><body>It is now %s.</body></html>" % now

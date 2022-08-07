@@ -139,6 +139,12 @@ AUTH_USER_MODEL = 'user.User'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '{levelname} {asctime} {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'console': {
             'level': 'INFO',
@@ -147,7 +153,8 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'simple'
         },
     },
     'loggers': {
@@ -161,6 +168,10 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['file'],
+        },
     },
 }
 
@@ -171,3 +182,13 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = 'unsafe-none'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTHENTICATION_BACKENDS = ['user.backends.EmailBackend']
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+LOGIN_URL = '/user/login/'
