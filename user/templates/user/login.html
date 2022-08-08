@@ -1,39 +1,36 @@
 {% extends "user/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-{% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-{% else %}
-<p>Please login to see this page.</p>
-{% endif %}
-{% endif %}
-
-
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Author Portal</legend>
-        {{ form|crispy }}
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Log In</button>
+    {% if form.errors %}<p>Your username and password didn't match. Please try again.</p>{% endif %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>
+                Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.
+            </p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">
+                Author Portal
+            </legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Log In</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Don't Have An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
+        </small>
     </div>
-</form>
-<div class="border-top pt-3">
-    <small class="text-muted">
-        Don't Have An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
-    </small>
-</div>
-
-
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
+    {# Assumes you set up the password_reset view in your URLconf #}
+    <p>
+        <a href="{% url 'password_reset' %}">Lost password?</a>
+    </p>
 {% endblock content %}

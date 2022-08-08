@@ -189,4 +189,4 @@ CACHES = {
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 LOGIN_URL = 'login'
-# LOGIN_REDIRECT_URL = 'post_list'
+LOGIN_REDIRECT_URL = 'post_list'

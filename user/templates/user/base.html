@@ -22,7 +22,7 @@
                         {% for message in messages %}<div class="alert alert-{{ message.tags }}">{{ message }}</div>{% endfor %}
                     {% endif %}
                     <div id="content">
-                        {% block content %}{% endblock %}
+                        {% block content %}{% endblock content %}
                     </div>
                 </div>
             </div>
