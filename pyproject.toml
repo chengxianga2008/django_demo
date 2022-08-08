@@ -12,6 +12,7 @@ gunicorn = "^20.1.0"
 python-dotenv = "^0.20.0"
 django-crispy-forms = "^1.14.0"
 redis = "^4.3.4"
+djlint = "^1.9.4"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.971"
