@@ -13,6 +13,7 @@ python-dotenv = "^0.20.0"
 django-crispy-forms = "^1.14.0"
 redis = "^4.3.4"
 djlint = "^1.9.4"
+djangorestframework = "^3.13.1"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.971"
